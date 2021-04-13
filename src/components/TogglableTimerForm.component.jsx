@@ -1,12 +1,22 @@
 import React, { useState } from 'react';
 import TimerForm from './TimerForm.component';
 
-const TogglableTimerForm = () => {
+const TogglableTimerForm = ({ onFormSubmit }) => {
 	const [isOpen, setIsOpen] = useState(false);
-	const handleFormOpen = () => setIsOpen(!isOpen);
+	const handleFormOpen = () => setIsOpen(true);
+	const handleFormClose = () => setIsOpen(false);
+	const handleFormSubmit = (timer) => {
+		onFormSubmit(timer);
+		setIsOpen(false);
+	};
 
 	if (isOpen) {
-		return <TimerForm />;
+		return (
+			<TimerForm
+				onFormSubmit={handleFormSubmit}
+				onFormClose={handleFormClose}
+			/>
+		);
 	} else {
 		return (
 			<div className="ui basic content center aligned segment">

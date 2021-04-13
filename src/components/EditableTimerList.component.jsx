@@ -2,7 +2,13 @@ import React from 'react';
 
 import EditableTimer from './EditableTimer.component.jsx';
 
-const EditableTimerList = ({ timers }) => {
+const EditableTimerList = ({
+	timers,
+	onFormSubmit,
+	onTrashClick,
+	onStartClick,
+	onStopClick,
+}) => {
 	const timersList = timers.map((timer) => (
 		<EditableTimer
 			key={timer.id}
@@ -11,6 +17,10 @@ const EditableTimerList = ({ timers }) => {
 			project={timer.project}
 			elapsed={timer.elapsed}
 			runningSince={timer.runningSince}
+			onFormSubmit={onFormSubmit}
+			onTrashClick={onTrashClick}
+			onStartClick={onStartClick}
+			onStopClick={onStopClick}
 		/>
 	));
 	return <div id="timers">{timersList}</div>;
